@@ -35,9 +35,10 @@ void ACheckpoint::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	ABird* Bird = Cast<ABird>(OtherActor);
 	if (Bird)
 	{
-		if (GEngine)
+		Bird->SetnbCheckpointPassed(Bird->GetnbCheckpointPassed() + 1);
+		if (Bird->GetnbCheckpointPassed() >= Bird->GetnbMaxCheckpointPassed())
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Hello world!"));
+			Bird->EndGame();
 		}
 	}
 }

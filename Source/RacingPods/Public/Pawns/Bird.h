@@ -23,6 +23,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	FORCEINLINE int GetnbCheckpointPassed() const { return nbCheckpointPassed; }
+	FORCEINLINE int GetnbMaxCheckpointPassed() const { return MaxCheckpoint; }
+	FORCEINLINE void SetnbCheckpointPassed(int value) { nbCheckpointPassed = value; }
+
+	UFUNCTION()
+	void EndGame();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,6 +46,13 @@ protected:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = CheckPoint)
+	int nbCheckpointPassed = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CheckPoint)
+	int MaxCheckpoint = 10;
+		
+
 private:
 	UPROPERTY(VisibleAnywhere)
 	UCapsuleComponent* Capsule;
@@ -51,4 +65,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* BirdMesh;
+
+
 };

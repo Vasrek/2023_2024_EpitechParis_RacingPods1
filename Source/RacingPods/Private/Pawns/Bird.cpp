@@ -70,6 +70,14 @@ void ABird::Look(const FInputActionValue& Value)
 	}
 }
 
+void ABird::EndGame()
+{
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Red, TEXT("ENDGAME"));
+	}
+}
+
 // Called every frame
 void ABird::Tick(float DeltaTime)
 {
