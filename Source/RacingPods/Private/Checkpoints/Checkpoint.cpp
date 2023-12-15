@@ -35,10 +35,13 @@ void ACheckpoint::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	ABird* Bird = Cast<ABird>(OtherActor);
 	if (Bird)
 	{
-		Bird->SetnbCheckpointPassed(Bird->GetnbCheckpointPassed() + 1);
-		if (Bird->GetnbCheckpointPassed() >= Bird->GetnbMaxCheckpointPassed())
+		if (Bird->GetnbCheckpointPassed() == Bird->GetnbMaxCheckpointPassed())
 		{
 			Bird->EndGame();
+		}
+		else
+		{
+			Bird->SetnbCheckpointPassed(Bird->GetnbCheckpointPassed() + 1);
 		}
 	}
 }
